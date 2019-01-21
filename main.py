@@ -9,7 +9,7 @@ def main():
     """
     Testing image_to_string
     """
-    img_paths = [path.abspath(img) for img in listdir(path.join('sourceimg'))]
+    img_paths = [path.join('sourceimg',img) for img in listdir(path.join('sourceimg'))]
     for img in img_paths:
         print(img,'\n')
         print(image_to_string(Image.open(img)))
