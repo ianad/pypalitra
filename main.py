@@ -1,5 +1,5 @@
-import os
-from os import path, listdir
+from pathlib import Path
+from os import listdir
 
 from PIL import Image
 import pytesseract
@@ -9,10 +9,12 @@ def main():
     """
     Testing image_to_string
     """
-    img_paths = [path.join('sourceimg',img) for img in listdir(path.join('sourceimg'))]
+    source = Path(r'sourceimg').absolute()
+    img_paths = [(source / img) for img in listdir(source)]
     for img in img_paths:
         print(img)
-        print(image_to_string(Image.open(img).encode('utf-8')))
+        # print(type(image_to_string(Image.open(img))))
+        print(image_to_string(Image.open(img)).encode('ascii',errors='ignore'))
 
 
 if __name__ == "__main__":
